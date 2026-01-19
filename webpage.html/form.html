@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>University Admission Form</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            opacity: 0.9;
+        }
+
+        .form-container {
+            padding: 40px;
+        }
+
+        .section-title {
+            background: #f8f9fa;
+            padding: 15px 20px;
+            margin: 30px -40px 20px -40px;
+            border-left: 5px solid #667eea;
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-row.full {
+            grid-template-columns: 1fr;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #333;
+            font-size: 0.95em;
+        }
+
+        .required::after {
+            content: " *";
+            color: #e74c3c;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="number"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            font-size: 1em;
+            font-family: inherit;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        input[type="tel"]:focus,
+        input[type="date"]:focus,
+        input[type="number"]:focus,
+        select:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            margin-right: 8px;
+            cursor: pointer;
+        }
+
+        .checkbox-label,
+        .radio-label {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 15px;
+            margin-top: 40px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 12px 30px;
+            font-size: 1em;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .btn-submit {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-submit:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-reset {
+            background: #f8f9fa;
+            color: #333;
+            border: 2px solid #e0e0e0;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-reset:hover {
+            background: #e0e0e0;
+        }
+
+        .btn-add-form {
+            background: #27ae60;
+            color: white;
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .btn-add-form:hover {
+            background: #229954;
+            transform: translateY(-2px);
+        }
+
+        .info-box {
+            background: #e8f4f8;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            color: #2c3e50;
+        }
+
+        .success-message {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            border-left: 4px solid #28a745;
+        }
+
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .header h1 {
+                font-size: 1.8em;
+            }
+
+            .form-container {
+                padding: 20px;
+            }
+
+            .section-title {
+                margin-left: -20px;
+                margin-right: -20px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .btn-submit,
+            .btn-reset,
+            .btn-add-form {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🎓 University Admission Portal</h1>
+            <p>Apply for your desired program today</p>
+        </div>
+
+        <div class="form-container">
+            <div class="success-message" id="successMessage">
+                ✓ Form submitted successfully! We will contact you soon.
+            </div>
+
+            <div class="info-box">
+                <strong>ℹ️ Note:</strong> Fields marked with * are mandatory. Please fill all required fields carefully.
+            </div>
+
+            <form id="admissionForm">
+                <!-- Personal Information Section -->
+                <div class="section-title">📋 Personal Information</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName" class="required">First Name</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="Enter your first name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName" class="required">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="Enter your last name" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email" class="required">Email Address</label>
+                        <input type="email" id="email" name="email" placeholder="your.email@example.com" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone" class="required">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" placeholder="+1 (555) 123-4567" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dob" class="required">Date of Birth</label>
+                        <input type="date" id="dob" name="dob" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gender" class="required">Gender</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">-- Select Gender --</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                            <option value="other">Other</option>
+                            <option value="prefer-not">Prefer not to say</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Contact Information Section -->
+                <div class="section-title">🏠 Contact Information</div>
+
+                <div class="form-group">
+                    <label for="address" class="required">Street Address</label>
+                    <input type="text" id="address" name="address" placeholder="123 Main Street" required>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="city" class="required">City</label>
+                        <input type="text" id="city" name="city" placeholder="Enter your city" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="state" class="required">State/Province</label>
+                        <input type="text" id="state" name="state" placeholder="Enter your state" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="zipcode" class="required">Zip/Postal Code</label>
+                        <input type="text" id="zipcode" name="zipcode" placeholder="12345" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="country" class="required">Country</label>
+                        <input type="text" id="country" name="country" placeholder="Enter your country" required>
+                    </div>
+                </div>
+
+                <!-- Academic Information Section -->
+                <div class="section-title">📚 Academic Information</div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="highschool" class="required">High School Name</label>
+                        <input type="text" id="highschool" name="highschool" placeholder="Enter high school name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="gpa" class="required">High School GPA</label>
+                        <input type="number" id="gpa" name="gpa" placeholder="e.g., 3.8" min="0" max="4" step="0.01" required>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="gradYear" class="required">Graduation Year</label>
+                        <input type="number" id="gradYear" name="gradYear" placeholder="2024" min="2020" max="2030" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="testScore" class="required">Entrance Exam Score (SAT/ACT)</label>
+                        <input type="number" id="testScore" name="testScore" placeholder="e.g., 1500" required>
+                    </div>
+                </div>
+
+                <!-- Program Selection Section -->
+                <div class="section-title">🎯 Program Selection</div>
+
+                <div class="form-group">
+                    <label for="program" class="required">Desired Program</label>
+                    <select id="program" name="program" required>
+                        <option value="">-- Select Program --</option>
+                        <option value="engineering">Engineering</option>
+                        <option value="business">Business Administration</option>
+                        <option value="medicine">Medicine</option>
+                        <option value="law">Law</option>
+                        <option value="arts">Arts & Sciences</option>
+                        <option value="computer">Computer Science</option>
+                        <option value="nursing">Nursing</option>
+                        <option value="education">Education</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="required">Campus Preference</label>
+                    <div class="radio-group">
+                        <label class="radio-label">
+                            <input type="radio" name="campus" value="main" required>
+                            Main Campus
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="campus" value="north">
+                            North Campus
+                        </label>
+                        <label class="radio-label">
+                            <input type="radio" name="campus" value="south">
+                            South Campus
+                        </label>
+                    </div>
+                </div>
+
+                <!-- Additional Information Section -->
+                <div class="section-title">✨ Additional Information</div>
+
+                <div class="form-group">
+                    <label for="essay">Essay/Statement of Purpose</label>
+                    <textarea id="essay" name="essay" placeholder="Tell us why you want to join our university..."></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label>Interests & Activities (Select all that apply)</label>
+                    <div class="checkbox-group">
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="interests" value="sports">
+                            Sports
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="interests" value="arts">
+                            Arts
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="interests" value="music">
+                            Music
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="interests" value="volunteering">
+                            Volunteering
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="interests" value="technology">
+                            Technology
+                        </label>
+                        <label class="checkbox-label">
+                            <input type="checkbox" name="interests" value="debate">
+                            Debate
+                        </label>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" id="terms" name="terms" required>
+                        I agree to the terms and conditions
+                    </label>
+                </div>
+
+                <!-- Button Group -->
+                <div class="button-group">
+                    <button type="submit" class="btn-submit">📤 Submit Application</button>
+                    <button type="reset" class="btn-reset">🔄 Clear Form</button>
+                    <button type="button" class="btn-add-form" onclick="createNewForm()">➕ Add New Form</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script>
+        // Form submission handler
+        document.getElementById('admissionForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Basic validation
+            if (!document.getElementById('terms').checked) {
+                alert('Please accept the terms and conditions');
+                return;
+            }
+
+            // Collect form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+
+            // Show success message
+            document.getElementById('successMessage').style.display = 'block';
+            console.log('Form Data Submitted:', data);
+
+            // Reset form after 2 seconds
+            setTimeout(() => {
+                this.reset();
+                document.getElementById('successMessage').style.display = 'none';
+            }, 2000);
+        });
+
+        // Create new form function
+        function createNewForm() {
+            const confirmed = confirm('Are you sure you want to create a new application form? Current data will be cleared.');
+            if (confirmed) {
+                document.getElementById('admissionForm').reset();
+                document.getElementById('successMessage').style.display = 'none';
+                alert('New form created! You can now fill in a new application.');
+            }
+        }
+
+        // Real-time validation for email
+        document.getElementById('email').addEventListener('blur', function() {
+            const email = this.value;
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email) && email !== '') {
+                alert('Please enter a valid email address');
+                this.focus();
+            }
+        });
+
+        // Real-time validation for phone
+        document.getElementById('phone').addEventListener('blur', function() {
+            const phone = this.value;
+            const phoneRegex = /^\+?[\d\s\-()]{10,}$/;
+            if (!phoneRegex.test(phone) && phone !== '') {
+                alert('Please enter a valid phone number');
+                this.focus();
+            }
+        });
+    </script>
+</body>
+</html>
