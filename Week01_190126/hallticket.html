@@ -5,464 +5,256 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Exam Hall Ticket</title>
     <style>
+        @page {
+            size: A4;
+            margin: 10mm;
+        }
+
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box;
         }
 
         body {
-            font-family: 'Arial', sans-serif;
-            background-color: #f5f5f5;
-            padding: 20px;
+            font-family: Arial, sans-serif;
+            padding: 10mm;
+            background-color: white;
         }
 
-        .container {
-            max-width: 900px;
+        .page-container {
+            width: 210mm;
+            height: 297mm;
             margin: 0 auto;
-            background: white;
-            padding: 30px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            border: 3px solid #1a237e;
+            padding: 10mm;
+            background-color: white;
+            box-sizing: border-box;
         }
-
-        .header {
-            text-align: center;
-            margin-bottom: 30px;
-            border-bottom: 3px solid #1a237e;
-            padding-bottom: 20px;
-        }
-
-        .logo-section {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .logo {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 24px;
-        }
-
-        .header-text h1 {
-            color: #1a237e;
-            font-size: 2.2em;
-            margin-bottom: 5px;
-        }
-
-        .header-text h2 {
-            color: #333;
-            font-size: 1.3em;
-            margin-bottom: 5px;
-        }
-
-        .header-text p {
-            color: #666;
-            font-size: 0.95em;
-        }
-
-        .watermark {
-            width: 80px;
-            height: 80px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-            font-size: 24px;
-        }
-
-        .header-text {
-            flex: 1;
-        }
-
-        .ticket-number {
-            text-align: center;
-            color: #e74c3c;
-            font-weight: bold;
-            font-size: 1.1em;
-            margin-bottom: 20px;
-        }
-
+        
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-bottom: 20px;
+            margin-bottom: 8px;
+            font-size: 11px;
         }
-
-        .info-table,
-        .exam-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .info-table td,
-        .info-table th,
-        .exam-table td,
-        .exam-table th {
-            border: 2px solid #1a237e;
-            padding: 12px;
+        
+        td, th {
+            border: 1px solid black;
+            padding: 6px;
             text-align: left;
         }
-
-        .info-table th,
-        .exam-table th {
-            background-color: #1a237e;
-            color: white;
-            font-weight: bold;
-            width: 40%;
-        }
-
-        .info-table td,
-        .exam-table td {
-            background-color: #f9f9f9;
-        }
-
-        .info-table tr:nth-child(even) td,
-        .exam-table tr:nth-child(even) td {
-            background-color: #f0f0f0;
-        }
-
-        .label {
-            background-color: #1a237e;
-            color: white;
-            font-weight: bold;
-            width: 35%;
-        }
-
-        .value {
-            background-color: #ffffff;
-            color: #333;
-            font-weight: 500;
-        }
-
-        .section-title {
-            background-color: #1a237e;
-            color: white;
-            font-weight: bold;
-            font-size: 1.1em;
-            padding: 10px 12px;
-            margin-top: 20px;
-            margin-bottom: 10px;
-        }
-
-        .student-photo-section {
-            display: flex;
-            justify-content: space-between;
-            margin: 20px 0;
-        }
-
-        .photo-box {
-            width: 150px;
-            height: 180px;
-            border: 2px solid #1a237e;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: #f0f0f0;
-            color: #999;
-            font-size: 0.9em;
+        
+        th {
             text-align: center;
             font-weight: bold;
+            font-size: 12px;
         }
-
-        .instructions {
-            background-color: #fff3cd;
-            border: 2px solid #ffc107;
-            padding: 15px;
-            margin: 20px 0;
-            border-radius: 5px;
-        }
-
-        .instructions h3 {
-            color: #856404;
-            margin-bottom: 10px;
-        }
-
-        .instructions ul {
-            margin-left: 20px;
-            color: #856404;
-        }
-
-        .instructions li {
-            margin-bottom: 8px;
-        }
-
-        .footer {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px solid #1a237e;
-        }
-
-        .signature-box {
-            text-align: center;
-            flex: 1;
-        }
-
-        .signature-line {
-            border-top: 2px solid #333;
+        
+        input[type="text"],
+        input[type="email"],
+        input[type="tel"],
+        input[type="date"],
+        input[type="file"],
+        select {
             width: 100%;
-            margin-bottom: 5px;
-            height: 40px;
-        }
-
-        .signature-label {
-            font-weight: bold;
-            color: #333;
-            font-size: 0.9em;
-        }
-
-        .print-button {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .print-button button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            padding: 3px;
             border: none;
-            padding: 12px 30px;
-            font-size: 1em;
-            border-radius: 5px;
-            cursor: pointer;
+            font-family: Arial;
+            font-size: 11px;
+            box-sizing: border-box;
+        }
+        
+        .header-title {
+            text-align: center;
             font-weight: bold;
-            transition: all 0.3s;
+            font-size: 16px;
+            margin-bottom: 10px;
+            text-decoration: underline;
         }
-
-        .print-button button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        
+        .button-group {
+            text-align: center;
+            margin-top: 15px;
+            margin-bottom: 10px;
         }
-
+        
+        button {
+            padding: 8px 15px;
+            margin: 5px;
+            font-size: 12px;
+            cursor: pointer;
+            border: 1px solid black;
+            background-color: white;
+        }
+        
+        button:hover {
+            background-color: #f0f0f0;
+        }
+        
         @media print {
             body {
-                background: white;
                 padding: 0;
+                margin: 0;
+                background-color: white;
             }
-            .print-button {
+
+            .page-container {
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                padding: 10mm;
+                box-shadow: none;
+                page-break-after: always;
+            }
+
+            .button-group {
                 display: none;
             }
-            .container {
-                box-shadow: none;
-                padding: 20px;
-            }
-        }
 
-        @media (max-width: 768px) {
-            .container {
-                padding: 15px;
-            }
-
-            .logo-section {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .logo,
-            .watermark {
-                width: 60px;
-                height: 60px;
-                font-size: 18px;
-            }
-
-            .header-text h1 {
-                font-size: 1.5em;
-            }
-
-            .student-photo-section {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .footer {
-                flex-direction: column;
-                gap: 30px;
+            input[type="text"],
+            input[type="email"],
+            input[type="tel"],
+            input[type="date"],
+            input[type="file"],
+            select {
+                border: none;
+                background-color: white;
             }
 
             table {
-                font-size: 0.9em;
+                margin-bottom: 6px;
             }
 
-            .info-table td,
-            .exam-table td {
-                padding: 8px;
+            td, th {
+                border: 1px solid black;
+                padding: 5px;
             }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <!-- Header Section -->
-        <div class="header">
-            <div class="logo-section">
-                <div class="logo">🎓</div>
-                <div class="header-text">
-                    <h1>COLLEGE EXAM HALL TICKET</h1>
-                    <h2>Admission Certificate for Examination</h2>
-                    <p>Academic Year 2025-2026 | Semester Final Examination</p>
-                </div>
-                <div class="watermark">🏫</div>
-            </div>
-            <div class="ticket-number">Hall Ticket No.: HT-2025-00456</div>
-        </div>
 
-        <!-- Student Information Section -->
-        <div class="section-title">STUDENT INFORMATION</div>
-        <table class="info-table">
-            <tr>
-                <th>Roll Number</th>
-                <td class="value">2024001456</td>
-                <th>Enrollment Number</th>
-                <td class="value">EN-2024-45678</td>
-            </tr>
-            <tr>
-                <th>Student Name</th>
-                <td class="value">Parth Kumar Singh</td>
-                <th>Date of Birth</th>
-                <td class="value">15-03-2003</td>
-            </tr>
-            <tr>
-                <th>Father's Name</th>
-                <td class="value">Mr. Rajesh Singh</td>
-                <th>Mother's Name</th>
-                <td class="value">Mrs. Priya Singh</td>
-            </tr>
-            <tr>
-                <th>Gender</th>
-                <td class="value">Male</td>
-                <th>Category</th>
-                <td class="value">General</td>
-            </tr>
-            <tr>
-                <th>Contact Number</th>
-                <td class="value">+91-9876543210</td>
-                <th>Email</th>
-                <td class="value">parth.singh@college.edu</td>
-            </tr>
-        </table>
-
-        <!-- Academic Information Section -->
-        <div class="section-title">ACADEMIC INFORMATION</div>
-        <table class="info-table">
-            <tr>
-                <th>Department</th>
-                <td class="value">Bachelor of Science - Computer Science</td>
-                <th>Semester</th>
-                <td class="value">4th Semester</td>
-            </tr>
-            <tr>
-                <th>Course Code</th>
-                <td class="value">CS401</td>
-                <th>Course Name</th>
-                <td class="value">Data Structures and Algorithms</td>
-            </tr>
-            <tr>
-                <th>Previous Semester CGPA</th>
-                <td class="value">8.45</td>
-                <th>Attendance</th>
-                <td class="value">92% (Eligible)</td>
-            </tr>
-        </table>
-
-        <!-- Student Photo Section -->
-        <div class="student-photo-section">
-            <div style="flex: 1;">
-                <div class="section-title">STUDENT PHOTOGRAPH</div>
-                <div class="photo-box">
-                    📷 Passport Size Photo<br>(4cm × 6cm)<br>Paste Here
-                </div>
-            </div>
-            <div style="flex: 1; margin-left: 30px;">
-                <div class="section-title">PRINCIPAL'S STAMP & SIGNATURE</div>
-                <div class="photo-box" style="height: 150px;">
-                    Principal's Stamp<br>& Signature
-                </div>
-            </div>
-        </div>
-
-        <!-- Examination Details Section -->
-        <div class="section-title">EXAMINATION DETAILS</div>
-        <table class="exam-table">
-            <tr>
-                <th>Exam Date</th>
-                <td class="value">28-01-2026</td>
-                <th>Exam Time</th>
-                <td class="value">10:00 AM - 1:00 PM (3 Hours)</td>
-            </tr>
-            <tr>
-                <th>Exam Center Code</th>
-                <td class="value">EXC-101</td>
-                <th>Exam Center Name</th>
-                <td class="value">Engineering Block - Room 301</td>
-            </tr>
-            <tr>
-                <th>Exam Center Address</th>
-                <td class="value">Central College Campus, New Delhi</td>
-                <th>Contact</th>
-                <td class="value">+91-11-25698745</td>
-            </tr>
-            <tr>
-                <th>Invigilator Name</th>
-                <td class="value">Dr. Amit Kumar Sharma</td>
-                <th>Co-Invigilator</th>
-                <td class="value">Mrs. Neha Patel</td>
-            </tr>
-            <tr>
-                <th>Exam Type</th>
-                <td class="value">Written (Theory & Practical)</td>
-                <th>Total Marks</th>
-                <td class="value">100</td>
-            </tr>
-        </table>
-
-        <!-- Instructions Section -->
-        <div class="instructions">
-            <h3>⚠️ IMPORTANT INSTRUCTIONS FOR STUDENTS</h3>
-            <ul>
-                <li><strong>Report Early:</strong> Arrive at the exam center at least 30 minutes before the exam start time.</li>
-                <li><strong>Mandatory Documents:</strong> Carry this hall ticket, valid ID proof, and admission certificate.</li>
-                <li><strong>Seat Assignment:</strong> Your seat number will be displayed on the notice board.</li>
-                <li><strong>Prohibited Items:</strong> Mobile phones, calculators, books, and notes are strictly prohibited.</li>
-                <li><strong>Dress Code:</strong> Students must wear neat and decent formal attire or college uniform.</li>
-                <li><strong>Check-in:</strong> Students arriving after 10 minutes from exam start time will not be allowed to enter.</li>
-                <li><strong>Conduct:</strong> Maintain absolute silence and follow all instructions given by the invigilator.</li>
-                <li><strong>Results:</strong> Results will be published on the college website within 2 weeks after examination.</li>
-            </ul>
-        </div>
-
-        <!-- Footer Section -->
-        <div class="footer">
-            <div class="signature-box">
-                <div class="signature-line"></div>
-                <div class="signature-label">Student Signature</div>
-            </div>
-            <div class="signature-box">
-                <div class="signature-line"></div>
-                <div class="signature-label">Examination Cell Officer</div>
-            </div>
-            <div class="signature-box">
-                <div class="signature-line"></div>
-                <div class="signature-label">College Principal</div>
-            </div>
-        </div>
-
-        <!-- Print Button -->
-        <div class="print-button">
-            <button onclick="window.print()">🖨️ Print Hall Ticket</button>
-        </div>
+<div class="page-container">
+    <div class="header-title">
+        COLLEGE EXAM HALL TICKET
     </div>
+
+    <table style="margin-bottom: 10px;">
+        <tr>
+            <td style="width: 70%;"><b>Roll Number:</b> <input type="text" name="rollNumber" id="rollNumber" style="width: 40%;"></td>
+            <td style="width: 30%; text-align: center; border: 1px solid black; height: 100px;">
+                <b>Photo</b><br><input type="file" name="photo" id="photo" accept="image/*" style="width: 90%; margin-top: 5px; font-size: 10px;">
+            </td>
+        </tr>
+    </table>
+
+    <form id="hallTicketForm">
+        <!-- Basic Information -->
+        <table>
+            <tr>
+                <th colspan="2">STUDENT INFORMATION</th>
+            </tr>
+            <tr>
+                <td><b>Name</b></td>
+                <td><input type="text" name="studentName" id="studentName"></td>
+            </tr>
+            <tr>
+                <td><b>Seat Number</b></td>
+                <td><input type="text" name="seatNumber" id="seatNumber"></td>
+            </tr>
+        </table>
+
+        <!-- Subjects -->
+        <table>
+            <tr>
+                <th colspan="2">SUBJECTS</th>
+            </tr>
+            <tr>
+                <td><b>Subject 1</b></td>
+                <td><input type="text" name="subject1" id="subject1"></td>
+            </tr>
+            <tr>
+                <td><b>Subject 2</b></td>
+                <td><input type="text" name="subject2" id="subject2"></td>
+            </tr>
+            <tr>
+                <td><b>Subject 3</b></td>
+                <td><input type="text" name="subject3" id="subject3"></td>
+            </tr>
+            <tr>
+                <td><b>Subject 4</b></td>
+                <td><input type="text" name="subject4" id="subject4"></td>
+            </tr>
+            <tr>
+                <td><b>Subject 5</b></td>
+                <td><input type="text" name="subject5" id="subject5"></td>
+            </tr>
+        </table>
+
+        <!-- Exam Details -->
+        <table>
+            <tr>
+                <th colspan="2">EXAM DETAILS</th>
+            </tr>
+            <tr>
+                <td><b>Exam Date</b></td>
+                <td><input type="date" name="examDate" id="examDate"></td>
+            </tr>
+            <tr>
+                <td><b>Exam Time</b></td>
+                <td><input type="text" name="examTime" id="examTime" placeholder="e.g., 10:00 AM - 1:00 PM"></td>
+            </tr>
+            <tr>
+                <td><b>Exam Center</b></td>
+                <td><input type="text" name="centerName" id="centerName"></td>
+            </tr>
+        </table>
+
+        <!-- Instructions -->
+        <table>
+            <tr>
+                <th>INSTRUCTIONS</th>
+            </tr>
+            <tr>
+                <td style="font-size: 10px;">
+                    • Report 30 minutes before exam time<br>
+                    • Carry this hall ticket and valid ID proof<br>
+                    • Mobile phones strictly prohibited<br>
+                    • Maintain silence during exam<br>
+                    • Follow invigilator's instructions
+                </td>
+            </tr>
+        </table>
+
+        <!-- Signature Section -->
+        <table>
+            <tr>
+                <td style="text-align: center; height: 50px;">
+                    <b style="font-size: 10px;">Student Signature</b><br>_________________
+                </td>
+                <td style="text-align: center; height: 50px;">
+                    <b style="font-size: 10px;">Invigilator</b><br>_________________
+                </td>
+            </tr>
+        </table>
+
+    </form>
+</div>
+
+<div class="button-group">
+    <button type="button" onclick="window.print()">Print Hall Ticket</button>
+    <button type="button" onclick="clearForm()">Clear Form</button>
+</div>
+
+<div class="button-group">
+    <button type="button" onclick="window.print()">Print Hall Ticket</button>
+    <button type="button" onclick="clearForm()">Clear Form</button>
+</div>
+
+<script>
+    function clearForm() {
+        document.getElementById('hallTicketForm').reset();
+    }
+</script>
+
 </body>
 </html>
