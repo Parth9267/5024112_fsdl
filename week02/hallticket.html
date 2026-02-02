@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width,initial-scale=1" />
+	<title>College Hall Ticket - CSE</title>
+	<style>
+		:root{--bg:#f3f6fb;--card:#fff;--accent:#0b63d6;--muted:#6b7280}
+		*{box-sizing:border-box}
+		body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;color:#0b1220;background:var(--bg);padding:28px}
+		.ticket{max-width:900px;margin:0 auto;background:var(--card);border-radius:10px;box-shadow:0 8px 30px rgba(11,22,40,0.06);overflow:hidden}
+		.header{background:linear-gradient(90deg,var(--accent),#2b8ef6);color:#fff;padding:18px 22px;display:flex;align-items:center;justify-content:space-between}
+		.college{font-weight:700}
+		.sub{font-size:13px;opacity:0.95}
+		.body{padding:22px}
+		.info{display:flex;gap:18px;flex-wrap:wrap;margin-bottom:18px}
+		.panel{flex:1;min-width:220px;padding:12px;border-radius:8px;border:1px solid #eef6ff;background:#fbfdff}
+		.panel h3{margin:0 0 6px;font-size:13px}
+		.meta{font-size:14px;margin:6px 0;color:var(--muted)}
+		table{subtle;border-collapse:collapse;width:100%;margin-top:8px}
+		table thead th{background:#f1f7ff;color:#0b1220;padding:10px;border-bottom:1px solid #e6eefc;text-align:left}
+		table tbody td{padding:10px;border-bottom:1px dashed #e6eefc}
+		.center{text-align:center}
+		.right{text-align:right}
+		.footer{display:flex;justify-content:space-between;align-items:center;padding:16px 22px;background:#fbfdff;border-top:1px solid #eef6ff}
+		.actions{display:flex;gap:10px}
+		button{background:var(--accent);color:#fff;border:0;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:600}
+		button.secondary{background:#fff;color:var(--accent);border:1px solid #cfe1ff}
+		@media (max-width:760px){.info{flex-direction:column}.header{flex-direction:column;align-items:flex-start;gap:8px}}
+		@media print{
+			body{padding:0;background:#fff}
+			.actions, button.secondary { display:none !important }
+			.ticket{box-shadow:none;border-radius:0}
+		}
+	</style>
+</head>
+<body>
+	<div class="ticket">
+		<div class="header">
+			<div>
+				<div class="college">ABC Institute Of Technology</div>
+				<div class="sub">Examination Cell — Hall Ticket</div>
+			</div>
+			<div class="right">
+				<div style="font-weight:700">Controller of Examinations</div>
+				<div style="font-size:12px;opacity:0.95">Academic Year 2025-26</div>
+			</div>
+		</div>
+
+		<div class="body">
+			<div class="info">
+				<div class="panel">
+					<h3>Student Details</h3>
+					<div class="meta"><strong>Name:</strong> <span id="name">John A. Doe</span></div>
+					<div class="meta"><strong>Roll No:</strong> <span id="roll">CSE2025001</span></div>
+					<div class="meta"><strong>Registration No:</strong> <span id="reg">2025REG001</span></div>
+					<div class="meta"><strong>Semester:</strong> <span id="sem">3</span></div>
+				</div>
+
+				<div class="panel">
+					<h3>Exam Details</h3>
+					<div class="meta"><strong>Exam:</strong> Mid-Semester Examinations</div>
+					<div class="meta"><strong>Date:</strong> <span id="date">15 March 2026</span></div>
+					<div class="meta"><strong>Time:</strong> 10:00 AM – 1:00 PM</div>
+					<div class="meta"><strong>Exam Center:</strong> Main Campus — Building A, Room 203</div>
+				</div>
+
+				<div class="panel">
+					<h3>Course</h3>
+					<div class="meta"><strong>Branch:</strong> Computer Science & Engineering (CSE)</div>
+					<div class="meta"><strong>Program:</strong> B.Tech</div>
+					<div class="meta"><strong>Duration:</strong> 4 Years</div>
+				</div>
+			</div>
+
+			<h3 style="margin:8px 0 6px">Subjects — CSE (Current Semester)</h3>
+			<table>
+				<thead>
+					<tr>
+						<th style="width:10%">Code</th>
+						<th>Subject</th>
+						<th style="width:12%" class="center">Max Marks</th>
+						<th style="width:12%" class="center">Marks Obtained</th>
+						<th style="width:16%">Instructor / Invigilator</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>CSE301</td>
+						<td>Mathematics — III (Engineering Mathematics)</td>
+						<td class="center">100</td>
+						<td class="center">&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>CSE302</td>
+						<td>Data Structures and Algorithms</td>
+						<td class="center">100</td>
+						<td class="center">&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>CSE303</td>
+						<td>Computer Organization and Architecture</td>
+						<td class="center">100</td>
+						<td class="center">&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>CSE304</td>
+						<td>Digital Logic & Design</td>
+						<td class="center">100</td>
+						<td class="center">&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>CSE305</td>
+						<td>Discrete Mathematics</td>
+						<td class="center">100</td>
+						<td class="center">&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>CSE306</td>
+						<td>Object Oriented Programming (Lab Included)</td>
+						<td class="center">100</td>
+						<td class="center">&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td>CSE307</td>
+						<td>Data Structures Lab / Programming Practicals</td>
+						<td class="center">50</td>
+						<td class="center">&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<div style="display:flex;gap:18px;margin-top:16px;flex-wrap:wrap">
+				<div style="flex:1;min-width:240px">
+					<h4 style="margin:0 0 6px">Important Instructions</h4>
+					<ul style="margin:6px 0 0 18px;color:var(--muted)">
+						<li>Carry this hall ticket and a valid photo ID to the exam center.</li>
+						<li>Electronic devices are strictly prohibited.</li>
+						<li>Be seated 30 minutes before the start time.</li>
+					</ul>
+				</div>
+
+				<div style="flex:0 0 260px;display:flex;flex-direction:column;gap:10px">
+					<div style="padding:8px;border-radius:8px;border:1px solid #eef6ff;background:#fff;min-height:72px">
+						<div style="font-size:13px;color:var(--muted)"><strong>Signature (Candidate)</strong></div>
+						<div style="margin-top:18px;border-top:1px dashed #e6eefc;height:18px"></div>
+					</div>
+					<div style="padding:8px;border-radius:8px;border:1px solid #eef6ff;background:#fff;min-height:72px">
+						<div style="font-size:13px;color:var(--muted)"><strong>Signature (Invigilator)</strong></div>
+						<div style="margin-top:18px;border-top:1px dashed #e6eefc;height:18px"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer">
+			<div style="font-size:13px;color:var(--muted)">For queries: examinations@abcinstitute.edu | +91 22 1234 5678</div>
+			<div class="actions">
+				<button class="secondary" onclick="window.location.href='form.html'">Back to Form</button>
+				<button onclick="window.print()">Print Hall Ticket</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
+

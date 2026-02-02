@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>College Admission Form</title>
+    <style>
+        :root{
+            --bg:#f4f7fb; --card:#ffffff; --accent:#0b74e6; --muted:#6b7280; --radius:10px;
+        }
+        *{box-sizing:border-box}
+        body{margin:0;background:linear-gradient(180deg,#eef5ff 0%,var(--bg) 100%);font-family:Inter,ui-sans-serif,system-ui,Segoe UI,Roboto,Helvetica,Arial;color:#0f172a}
+        .container{max-width:980px;margin:36px auto;padding:28px}
+        .card{background:var(--card);border-radius:var(--radius);box-shadow:0 8px 30px rgba(15,23,42,0.06);padding:28px}
+        h1{font-size:20px;margin:0 0 8px}
+        p.lead{margin:0 0 20px;color:var(--muted)}
+        form{display:flex;flex-direction:column;gap:18px}
+        fieldset{border:1px solid #e6edf7;padding:16px;border-radius:8px}
+        legend{padding:0 8px;font-weight:600}
+        .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+        .full{grid-column:1/-1}
+        label{display:block;font-size:13px;margin-bottom:6px;color:#0f172a}
+        input[type="text"],input[type="email"],input[type="date"],input[type="number"],select,textarea{width:100%;padding:10px 12px;border:1px solid #dbe7fb;border-radius:8px;font-size:14px}
+        textarea{min-height:90px;resize:vertical}
+        .small{font-size:12px;color:var(--muted);margin-top:6px}
+        .row{display:flex;gap:12px;align-items:center}
+        .radio-group,.checkbox-group{display:flex;gap:12px;align-items:center}
+        input[type="file"]{padding:6px}
+        .actions{display:flex;justify-content:flex-end;gap:12px}
+        button{background:var(--accent);color:#fff;padding:10px 16px;border-radius:8px;border:0;cursor:pointer;font-weight:600}
+                button.secondary{background:#fff;color:var(--accent);border:1px solid #cfe1ff}
+                @media (max-width:760px){.grid{grid-template-columns:1fr}.container{padding:18px}}
+                @media print{
+                    .actions, input[type="file"], .small { display:none !important; }
+                    body{background:#fff}
+                    fieldset{border:0}
+                }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <h1>College Admission Form</h1>
+            <p class="lead">Please fill in the details below carefully. All fields marked with * are required.</p>
+
+            <form novalidate>
+                <fieldset>
+                    <legend>Personal Details</legend>
+                    <div class="grid">
+                        <div>
+                            <label for="first">First Name *</label>
+                            <input id="first" name="first" type="text" required placeholder="Enter first name">
+                        </div>
+                        <div>
+                            <label for="middle">Middle Name</label>
+                            <input id="middle" name="middle" type="text" placeholder="Enter middle name">
+                        </div>
+                        <div>
+                            <label for="last">Last Name *</label>
+                            <input id="last" name="last" type="text" required placeholder="Enter last name">
+                        </div>
+                        <div>
+                            <label for="dob">Date of Birth *</label>
+                            <input id="dob" name="dob" type="date" required>
+                        </div>
+                        <div>
+                            <label>Gender *</label>
+                            <div class="radio-group">
+                                <label><input type="radio" name="gender" value="male" required> Male</label>
+                                <label><input type="radio" name="gender" value="female"> Female</label>
+                                <label><input type="radio" name="gender" value="other"> Other</label>
+                            </div>
+                        </div>
+                        <div>
+                            <label for="nationality">Nationality *</label>
+                            <input id="nationality" name="nationality" type="text" required placeholder="e.g., Indian">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Category & Religion</legend>
+                    <div class="grid">
+                        <div>
+                            <label for="caste">Caste Category *</label>
+                            <select id="caste" name="caste" required>
+                                <option value="">Select category</option>
+                                <option>General</option>
+                                <option>OBC</option>
+                                <option>SC</option>
+                                <option>ST</option>
+                                <option>VJNT</option>
+                                <option>EWS</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="religion">Religion</label>
+                            <input id="religion" name="religion" type="text" placeholder="e.g., Hindu, Christian">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Contact Details</legend>
+                    <div class="grid">
+                        <div>
+                            <label for="mobile">Mobile Number *</label>
+                            <input id="mobile" name="mobile" type="tel" pattern="[0-9]{10}" required placeholder="10-digit mobile number">
+                            <div class="small">Enter digits only (10 digits)</div>
+                        </div>
+                        <div>
+                            <label for="email">Email ID *</label>
+                            <input id="email" name="email" type="email" required placeholder="name@example.com">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Address</legend>
+                    <div class="grid">
+                        <div class="full">
+                            <label for="address">Full Address *</label>
+                            <textarea id="address" name="address" required placeholder="Street, landmark, area"></textarea>
+                        </div>
+                        <div>
+                            <label for="city">City *</label>
+                            <input id="city" name="city" type="text" required>
+                        </div>
+                        <div>
+                            <label for="state">State *</label>
+                            <input id="state" name="state" type="text" required>
+                        </div>
+                        <div>
+                            <label for="pincode">Pincode *</label>
+                            <input id="pincode" name="pincode" type="number" required placeholder="e.g., 400001">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Academic Details</legend>
+                    <div class="grid">
+                        <div>
+                            <label for="lastqual">Last Qualification *</label>
+                            <select id="lastqual" name="lastqual" required>
+                                <option value="">Select</option>
+                                <option>10th</option>
+                                <option>12th</option>
+                                <option>Diploma</option>
+                                <option>Graduate</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="board">Board / University *</label>
+                            <input id="board" name="board" type="text" required placeholder="Board or University name">
+                        </div>
+                        <div>
+                            <label for="score">Percentage / CGPA *</label>
+                            <input id="score" name="score" type="text" required placeholder="e.g., 85% or 8.5">
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Course & Documents</legend>
+                    <div class="grid">
+                        <div>
+                            <label for="course">Course Applying For *</label>
+                            <select id="course" name="course" required>
+                                <option value="">Select course</option>
+                                <option>B.Tech</option>
+                                <option>B.Sc</option>
+                                <option>B.Com</option>
+                                <option>BCA</option>
+                                <option>MCA</option>
+                                <option>MBA</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="photo">Passport Size Photo *</label>
+                            <input id="photo" name="photo" type="file" accept="image/*" required>
+                            <div class="small">JPG/PNG recommended. Max 2MB (client-side size check not included).</div>
+                        </div>
+                        <div class="full">
+                            <label for="marksheet">Marksheet (latest) *</label>
+                            <input id="marksheet" name="marksheet" type="file" accept="application/pdf,image/*" required>
+                        </div>
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Other</legend>
+                    <label class="row"><input type="checkbox" id="declaration" required> I hereby declare that the information provided is true and correct to the best of my knowledge. *</label>
+                </fieldset>
+
+                <div class="actions">
+                    <button type="reset" class="secondary">Reset</button>
+                    <button type="button" class="secondary" onclick="window.print()">Print</button>
+                    <button type="submit">Submit Application</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
