@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1" />
+		<title>Smart Nagrik Seva — Admin Dashboard</title>
+		<link rel="stylesheet" href="assets/css/admin_dashboard.css">
+	</head>
+	<body>
+		<div class="app">
+			<aside class="sidebar">
+				<div class="brand">
+					<div class="logo">SNS</div>
+					<div class="title">Smart Nagrik Seva</div>
+				</div>
+				<nav class="nav">
+					<a class="nav-item active">Dashboard</a>
+					<a class="nav-item">Complaints</a>
+					<a class="nav-item">Assignments</a>
+					<a class="nav-item">SLA Monitor</a>
+					<a class="nav-item">Analytics</a>
+					<a class="nav-item">Users & Roles</a>
+					<a class="nav-item">Audit Logs</a>
+					<a class="nav-item">Settings</a>
+				</nav>
+				<div class="sidebar-footer">Signed in as <strong>admin@city.gov</strong></div>
+			</aside>
+
+			<main class="main">
+				<header class="topbar">
+					<div class="search">
+						<input placeholder="Search complaints, IDs, locations" />
+					</div>
+					<div class="top-actions">
+						<button class="btn">Notifications</button>
+						<button class="btn ghost">Sign out</button>
+					</div>
+				</header>
+
+				<section class="kpi">
+					<div class="card kpi-card">
+						<div class="kpi-title">Total Complaints</div>
+						<div class="kpi-value">1,942</div>
+					</div>
+					<div class="card kpi-card">
+						<div class="kpi-title">Open</div>
+						<div class="kpi-value warning">276</div>
+					</div>
+					<div class="card kpi-card">
+						<div class="kpi-title">Resolved</div>
+						<div class="kpi-value success">1,610</div>
+					</div>
+					<div class="card kpi-card">
+						<div class="kpi-title">SLA Breaches</div>
+						<div class="kpi-value danger">12</div>
+					</div>
+				</section>
+
+				<section class="controls">
+					<div class="filters card">
+						<div class="filters-row">
+							<select>
+								<option>All Statuses</option>
+								<option>Open</option>
+								<option>In Progress</option>
+								<option>Resolved</option>
+							</select>
+							<select>
+								<option>All Types</option>
+								<option>Water</option>
+								<option>Streetlight</option>
+								<option>Garbage</option>
+							</select>
+							<select>
+								<option>All Wards</option>
+								<option>Ward 1</option>
+								<option>Ward 2</option>
+							</select>
+							<button class="btn">Apply</button>
+						</div>
+					</div>
+
+					<div class="sla card">
+						<div class="sla-title">SLA Monitor</div>
+						<div class="sla-body">
+							<div class="sla-item">
+								<div class="label">Due within 24h</div>
+								<div class="value">48</div>
+							</div>
+							<div class="sla-item">
+								<div class="label">Overdue</div>
+								<div class="value danger">12</div>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<section class="table-section card">
+					<div class="table-header">
+						<h3>Recent Complaints</h3>
+						<div class="table-actions">
+							<button class="btn ghost">Export CSV</button>
+						</div>
+					</div>
+
+					<table class="complaints">
+						<thead>
+							<tr>
+								<th>ID</th>
+								<th>Type</th>
+								<th>Location</th>
+								<th>Priority</th>
+								<th>Assigned To</th>
+								<th>Status</th>
+								<th>Updated</th>
+							</tr>
+						</thead>
+						<tbody>
+							<tr>
+								<td>#C-10234</td>
+								<td>Water</td>
+								<td>Ward 3 — Park Road</td>
+								<td>High</td>
+								<td>Field Team A</td>
+								<td><span class="status in-progress">In Progress</span></td>
+								<td>2h ago</td>
+							</tr>
+							<tr>
+								<td>#C-10215</td>
+								<td>Streetlight</td>
+								<td>Ward 7 — Market</td>
+								<td>Medium</td>
+								<td>Team B</td>
+								<td><span class="status open">Open</span></td>
+								<td>6h ago</td>
+							</tr>
+							<tr>
+								<td>#C-10198</td>
+								<td>Garbage</td>
+								<td>Ward 2 — Hillview</td>
+								<td>Low</td>
+								<td>Team C</td>
+								<td><span class="status resolved">Resolved</span></td>
+								<td>1d ago</td>
+							</tr>
+						</tbody>
+					</table>
+				</section>
+
+				<section class="panels">
+					<div class="panel card">
+						<h4>Automated Assignment Rules</h4>
+						<p class="muted">Rules assign based on location, workload, and category.</p>
+						<div class="rule-list">
+							<div class="rule">Ward 1–3 → Team A</div>
+							<div class="rule">Streetlight urgent → Electrical Squad</div>
+						</div>
+					</div>
+
+					<div class="panel card">
+						<h4>User & Role Management</h4>
+						<p class="muted">Create accounts, assign roles, and manage permissions.</p>
+						<a class="btn small">Manage Users</a>
+					</div>
+
+					<div class="panel card">
+						<h4>Audit Logs</h4>
+						<p class="muted">Immutable activity trail for accountability and audits.</p>
+						<a class="btn small">View Logs</a>
+					</div>
+				</section>
+			</main>
+		</div>
+	</body>
+</html>
+
