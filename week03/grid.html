@@ -1,0 +1,1107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QuantEdge - Quantitative Finance Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="grid.css">
+    <style>
+        body {
+            background-color: #0f1419;
+            color: #e0e0e0;
+        }
+        .navbar {
+            background: linear-gradient(90deg, #1a1f2e 0%, #16213e 100%);
+            border-bottom: 2px solid #00d4ff;
+        }
+        .jumbotron-demo {
+            background: linear-gradient(135deg, #00d4ff 0%, #00a8cc 50%, #003f5c 100%);
+            position: relative;
+            overflow: hidden;
+        }
+        .jumbotron-demo::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" fill-opacity="1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,122.7C672,117,768,139,864,144C960,149,1056,139,1152,128C1248,117,1344,107,1392,101.3L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>') bottom/cover no-repeat;
+            opacity: 0.3;
+        }
+        .jumbotron-demo h1 {
+            position: relative;
+            z-index: 1;
+        }
+        .section {
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #1a1f2e 0%, #16213e 100%);
+            padding: 30px;
+            border-radius: 8px;
+            border-left: 4px solid #00d4ff;
+            box-shadow: 0 8px 32px rgba(0, 212, 255, 0.1);
+        }
+        .market-card {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+            border: 1px solid #00d4ff;
+            border-radius: 8px;
+            padding: 20px;
+            transition: all 0.3s ease;
+        }
+        .market-card:hover {
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.3);
+            transform: translateY(-5px);
+        }
+        .price-up {
+            color: #00ff88;
+        }
+        .price-down {
+            color: #ff4444;
+        }
+        .calculator-section {
+            background: linear-gradient(135deg, #0f3460 0%, #16213e 100%);
+            padding: 30px;
+            border-radius: 8px;
+            border: 1px solid #00d4ff;
+        }
+        .strategy-card {
+            background: linear-gradient(135deg, #1a1f2e 0%, #0f3460 100%);
+            border: 2px solid #00d4ff;
+            border-radius: 10px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .strategy-card:hover {
+            box-shadow: 0 0 30px rgba(0, 212, 255, 0.4);
+            transform: scale(1.05);
+        }
+        .risk-metric {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(0, 212, 255, 0.2);
+        }
+        .risk-metric:last-child {
+            border-bottom: none;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #00d4ff 0%, #00a8cc 100%);
+            border: none;
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #00a8cc 0%, #007399 100%);
+            box-shadow: 0 0 20px rgba(0, 212, 255, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><i class="fas fa-chart-line"></i> QuantEdge</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#markets">Markets</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#strategies">Strategies</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#calculators">Tools</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Resources
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+                            <li><a class="dropdown-item" href="#">Risk Management</a></li>
+                            <li><a class="dropdown-item" href="#">Portfolio Analysis</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#">Documentation</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- JUMBOTRON / HERO SECTION -->
+    <div class="jumbotron-demo py-5 text-white mb-5">
+        <div class="container text-center position-relative" style="z-index: 2;">
+            <h1 class="display-4 fw-bold mb-4"><i class="fas fa-robot"></i> QuantEdge Finance</h1>
+            <p class="lead mb-4">Advanced Quantitative Analysis & Algorithmic Trading Platform</p>
+            <hr class="my-4">
+            <p class="mb-4">Harness the power of machine learning and statistical modeling to optimize your investment portfolio</p>
+            <a class="btn btn-light btn-lg me-2" href="#markets" role="button"><i class="fas fa-chart-bar"></i> View Markets</a>
+            <a class="btn btn-outline-light btn-lg" href="#calculators" role="button"><i class="fas fa-calculator"></i> Try Tools</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- BREADCRUMBS -->
+        <nav aria-label="breadcrumb" class="mb-5">
+            <ol class="breadcrumb bg-dark border border-info">
+                <li class="breadcrumb-item"><a href="#" class="text-info">Home</a></li>
+                <li class="breadcrumb-item"><a href="#markets" class="text-info">Financial Markets</a></li>
+                <li class="breadcrumb-item active text-info" aria-current="page">Quantitative Analysis</li>
+            </ol>
+        </nav>
+
+        <!-- MARKET DATA SECTION -->
+        <div class="section" id="markets">
+            <h2><i class="fas fa-globe"></i> Live Market Data</h2>
+            
+            <div class="row g-4">
+                <!-- Stock Market -->
+                <div class="col-md-4">
+                    <div class="market-card">
+                        <h5 class="mb-3"><i class="fas fa-building"></i> S&P 500</h5>
+                        <h3 class="mb-2">$4,852.95</h3>
+                        <p class="price-up mb-3"><i class="fas fa-arrow-up"></i> +2.45% Today</p>
+                        <small class="text-muted">Last updated: 2 mins ago</small>
+                        <button class="btn btn-outline-info btn-sm mt-3 w-100">View Details</button>
+                    </div>
+                </div>
+
+                <!-- Crypto Market -->
+                <div class="col-md-4">
+                    <div class="market-card">
+                        <h5 class="mb-3"><i class="fas fa-coins"></i> Bitcoin (BTC)</h5>
+                        <h3 class="mb-2">$45,230.50</h3>
+                        <p class="price-up mb-3"><i class="fas fa-arrow-up"></i> +5.12% 24h</p>
+                        <small class="text-muted">Last updated: 1 min ago</small>
+                        <button class="btn btn-outline-info btn-sm mt-3 w-100">View Details</button>
+                    </div>
+                </div>
+
+                <!-- Forex Market -->
+                <div class="col-md-4">
+                    <div class="market-card">
+                        <h5 class="mb-3"><i class="fas fa-money-bill-wave"></i> EUR/USD</h5>
+                        <h3 class="mb-2">1.0865</h3>
+                        <p class="price-down mb-3"><i class="fas fa-arrow-down"></i> -0.82% 24h</p>
+                        <small class="text-muted">Last updated: 30 secs ago</small>
+                        <button class="btn btn-outline-info btn-sm mt-3 w-100">View Details</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- PORTFOLIO RISK CALCULATOR -->
+        <div class="section" id="calculators">
+            <h2><i class="fas fa-calculator"></i> Portfolio Risk Calculator</h2>
+            
+            <div class="row g-4">
+                <!-- Calculator Form -->
+                <div class="col-lg-6">
+                    <div class="calculator-section">
+                        <h5 class="mb-4">Calculate Portfolio Metrics</h5>
+                        <form>
+                            <div class="mb-3">
+                                <label for="portfolioValue" class="form-label">Portfolio Value ($)</label>
+                                <input type="number" class="form-control bg-dark border-info text-light" id="portfolioValue" placeholder="100000" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="returnRate" class="form-label">Expected Return (%)</label>
+                                <input type="number" class="form-control bg-dark border-info text-light" id="returnRate" placeholder="8.5" step="0.1" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="volatility" class="form-label">Volatility (%)</label>
+                                <input type="number" class="form-control bg-dark border-info text-light" id="volatility" placeholder="15.2" step="0.1" required>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="riskLevel" class="form-label">Risk Level</label>
+                                <select class="form-select bg-dark border-info text-light" id="riskLevel" required>
+                                    <option selected>Select Risk Level</option>
+                                    <option value="conservative">Conservative</option>
+                                    <option value="moderate">Moderate</option>
+                                    <option value="aggressive">Aggressive</option>
+                                </select>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="timeHorizon" class="form-label">Time Horizon (Years)</label>
+                                <input type="number" class="form-control bg-dark border-info text-light" id="timeHorizon" placeholder="5" required>
+                            </div>
+
+                            <div class="form-check mb-3">
+                                <input class="form-check-input" type="checkbox" id="diversified" checked>
+                                <label class="form-check-label" for="diversified">
+                                    Portfolio is diversified
+                                </label>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary w-100">
+                                <i class="fas fa-sync"></i> Calculate VaR & Metrics
+                            </button>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Results Display -->
+                <div class="col-lg-6">
+                    <div class="calculator-section">
+                        <h5 class="mb-4">Risk Metrics Results</h5>
+                        
+                        <div class="risk-metric">
+                            <span><strong>Value at Risk (VaR 95%):</strong></span>
+                            <span class="price-down">-$8,540</span>
+                        </div>
+
+                        <div class="risk-metric">
+                            <span><strong>Expected Return:</strong></span>
+                            <span class="price-up">+$8,500</span>
+                        </div>
+
+                        <div class="risk-metric">
+                            <span><strong>Sharpe Ratio:</strong></span>
+                            <span class="text-info">1.24</span>
+                        </div>
+
+                        <div class="risk-metric">
+                            <span><strong>Maximum Drawdown:</strong></span>
+                            <span class="price-down">-28.5%</span>
+                        </div>
+
+                        <div class="risk-metric">
+                            <span><strong>Sortino Ratio:</strong></span>
+                            <span class="text-info">1.89</span>
+                        </div>
+
+                        <div class="risk-metric">
+                            <span><strong>Beta:</strong></span>
+                            <span class="text-info">0.92</span>
+                        </div>
+
+                        <div class="mt-4 p-3 bg-dark rounded border border-success">
+                            <p class="text-success mb-0"><i class="fas fa-check-circle"></i> <strong>Status:</strong> Portfolio Risk is within acceptable parameters</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- TRADING STRATEGIES -->
+        <div class="section" id="strategies">
+            <h2><i class="fas fa-chess"></i> Trading Strategies</h2>
+            
+            <div class="row g-4 mb-5">
+                <div class="col-md-3">
+                    <div class="strategy-card">
+                        <h4 class="mb-3"><i class="fas fa-robot"></i></h4>
+                        <h5>Mean Reversion</h5>
+                        <p class="small text-muted mt-2">Statistical arbitrage based on historical price levels</p>
+                        <div class="mb-3">
+                            <span class="badge bg-success">Win Rate: 62%</span>
+                        </div>
+                        <button class="btn btn-primary btn-sm">Deploy</button>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="strategy-card">
+                        <h4 class="mb-3"><i class="fas fa-arrow-trend-up"></i></h4>
+                        <h5>Momentum Trading</h5>
+                        <p class="small text-muted mt-2">Capitalizes on trending price movements</p>
+                        <div class="mb-3">
+                            <span class="badge bg-success">Win Rate: 58%</span>
+                        </div>
+                        <button class="btn btn-primary btn-sm">Deploy</button>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="strategy-card">
+                        <h4 class="mb-3"><i class="fas fa-code"></i></h4>
+                        <h5>ML Classification</h5>
+                        <p class="small text-muted mt-2">Machine learning price prediction model</p>
+                        <div class="mb-3">
+                            <span class="badge bg-success">Win Rate: 71%</span>
+                        </div>
+                        <button class="btn btn-primary btn-sm">Deploy</button>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="strategy-card">
+                        <h4 class="mb-3"><i class="fas fa-cubes"></i></h4>
+                        <h5>Pairs Trading</h5>
+                        <p class="small text-muted mt-2">Correlation-based relative value strategy</p>
+                        <div class="mb-3">
+                            <span class="badge bg-warning">Win Rate: 54%</span>
+                        </div>
+                        <button class="btn btn-primary btn-sm">Deploy</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Strategy Details -->
+            <div class="row">
+                <div class="col-12">
+                    <h5 class="mb-3">Strategy Performance Comparison</h5>
+                    <table class="table table-dark table-hover">
+                        <thead>
+                            <tr class="border-info">
+                                <th>Strategy</th>
+                                <th>Annual Return</th>
+                                <th>Volatility</th>
+                                <th>Sharpe Ratio</th>
+                                <th>Max Drawdown</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Mean Reversion</td>
+                                <td class="price-up">12.5%</td>
+                                <td>8.2%</td>
+                                <td>1.52</td>
+                                <td class="price-down">-15.3%</td>
+                                <td><span class="badge bg-success">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>Momentum Trading</td>
+                                <td class="price-up">18.3%</td>
+                                <td>14.5%</td>
+                                <td>1.26</td>
+                                <td class="price-down">-22.8%</td>
+                                <td><span class="badge bg-success">Active</span></td>
+                            </tr>
+                            <tr>
+                                <td>ML Classification</td>
+                                <td class="price-up">22.7%</td>
+                                <td>12.1%</td>
+                                <td>1.87</td>
+                                <td class="price-down">-18.5%</td>
+                                <td><span class="badge bg-warning">Backtesting</span></td>
+                            </tr>
+                            <tr>
+                                <td>Pairs Trading</td>
+                                <td class="price-up">9.8%</td>
+                                <td>6.5%</td>
+                                <td>1.51</td>
+                                <td class="price-down">-12.2%</td>
+                                <td><span class="badge bg-danger">Inactive</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- ACCOUNT SETUP FORM -->
+        <div class="section">
+            <h2><i class="fas fa-user-circle"></i> Create Trading Account</h2>
+            
+            <form>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="firstName" class="form-label">First Name</label>
+                        <input type="text" class="form-control bg-dark border-info text-light" id="firstName" placeholder="John" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="lastName" class="form-label">Last Name</label>
+                        <input type="text" class="form-control bg-dark border-info text-light" id="lastName" placeholder="Doe" required>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" class="form-control bg-dark border-info text-light" id="email" placeholder="john@example.com" required>
+                </div>
+
+                <div class="mb-3">
+                    <label for="investment" class="form-label">Initial Investment ($)</label>
+                    <input type="number" class="form-control bg-dark border-info text-light" id="investment" placeholder="50000" required>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label for="experience" class="form-label">Trading Experience</label>
+                        <select class="form-select bg-dark border-info text-light" id="experience" required>
+                            <option selected>Select Experience Level</option>
+                            <option value="beginner">Beginner</option>
+                            <option value="intermediate">Intermediate</option>
+                            <option value="advanced">Advanced</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label for="objective" class="form-label">Investment Objective</label>
+                        <select class="form-select bg-dark border-info text-light" id="objective" required>
+                            <option selected>Select Objective</option>
+                            <option value="growth">Capital Growth</option>
+                            <option value="income">Income Generation</option>
+                            <option value="preservation">Capital Preservation</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="strategy" class="form-label">Preferred Strategy</label>
+                    <select class="form-select bg-dark border-info text-light" id="strategy" required>
+                        <option selected>Select Strategy</option>
+                        <option value="mean">Mean Reversion</option>
+                        <option value="momentum">Momentum Trading</option>
+                        <option value="ml">ML Classification</option>
+                        <option value="pairs">Pairs Trading</option>
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="accountType" id="live" value="live">
+                        <label class="form-check-label" for="live">
+                            Live Trading Account
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="accountType" id="demo" value="demo" checked>
+                        <label class="form-check-label" for="demo">
+                            Demo Trading Account
+                        </label>
+                    </div>
+                </div>
+
+                <div class="mb-3 form-check">
+                    <input class="form-check-input" type="checkbox" id="terms" required>
+                    <label class="form-check-label" for="terms">
+                        I agree to the terms and conditions & risk disclosure
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-lg w-100">
+                    <i class="fas fa-rocket"></i> Open Trading Account
+                </button>
+            </form>
+        </div>
+
+        <!-- ACTION BUTTONS SHOWCASE -->
+        <div class="section">
+            <h2><i class="fas fa-toolbox"></i> Trading Actions</h2>
+
+            <div class="mb-4">
+                <h5>Primary Actions</h5>
+                <div class="d-flex flex-wrap gap-2">
+                    <button class="btn btn-primary"><i class="fas fa-arrow-up"></i> Buy Signal</button>
+                    <button class="btn btn-danger"><i class="fas fa-arrow-down"></i> Sell Signal</button>
+                    <button class="btn btn-warning"><i class="fas fa-pause"></i> Hold Position</button>
+                    <button class="btn btn-info"><i class="fas fa-exchange-alt"></i> Rebalance</button>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <h5>Risk Management Actions</h5>
+                <div class="d-flex flex-wrap gap-2">
+                    <button class="btn btn-outline-primary"><i class="fas fa-shield-alt"></i> Set Stop Loss</button>
+                    <button class="btn btn-outline-success"><i class="fas fa-flag-checkered"></i> Set Take Profit</button>
+                    <button class="btn btn-outline-warning"><i class="fas fa-chart-pie"></i> Adjust Allocation</button>
+                    <button class="btn btn-outline-danger"><i class="fas fa-exclamation-triangle"></i> Generate Alert</button>
+                </div>
+            </div>
+
+            <div>
+                <h5>Analysis Tools</h5>
+                <div class="btn-group w-100" role="group">
+                    <button type="button" class="btn btn-outline-info"><i class="fas fa-chart-line"></i> Technical</button>
+                    <button type="button" class="btn btn-outline-info"><i class="fas fa-balance-scale"></i> Fundamental</button>
+                    <button type="button" class="btn btn-outline-info"><i class="fas fa-brain"></i> Sentiment</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- MARKET ALERTS -->
+        <div class="section">
+            <h2><i class="fas fa-bell"></i> Market Alerts</h2>
+
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                <strong><i class="fas fa-exclamation-circle"></i> High Volatility Alert!</strong> Detected 45% increase in market volatility. Recommend reducing position sizes.
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong><i class="fas fa-exclamation-triangle"></i> Risk Alert:</strong> Portfolio VaR has exceeded 5% threshold. Review allocation.
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <strong><i class="fas fa-check-circle"></i> Signal Generated!</strong> ML Model generated buy signal for TECH portfolio.
+                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+
+            <div class="alert alert-info" role="alert">
+                <strong><i class="fas fa-info-circle"></i> Market Update:</strong> Fed interest rate decision announced. Markets reacting positively to guidance.
+            </div>
+        </div>
+
+        <!-- PERFORMANCE BADGES & STATS -->
+        <div class="section">
+            <h2><i class="fas fa-star"></i> Platform Statistics</h2>
+
+            <div class="row text-center mb-4">
+                <div class="col-md-3">
+                    <div>
+                        <h3 class="text-info">15,847</h3>
+                        <p class="text-muted">Active Traders</p>
+                        <span class="badge bg-success">+12% MoM</span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div>
+                        <h3 class="text-info">$2.4B</h3>
+                        <p class="text-muted">Total Assets Managed</p>
+                        <span class="badge bg-success">+8.5% MoM</span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div>
+                        <h3 class="text-info">18.5%</h3>
+                        <p class="text-muted">Avg. Annual Return</p>
+                        <span class="badge bg-info">YTD Performance</span>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div>
+                        <h3 class="text-info">99.9%</h3>
+                        <p class="text-muted">Platform Uptime</p>
+                        <span class="badge bg-success">Operational</span>
+                    </div>
+                </div>
+            </div>
+
+            <h5 class="my-4">Compliance & Risk Certifications</h5>
+            <div class="d-flex flex-wrap gap-2">
+                <span class="badge bg-dark border border-success">✓ SEC Registered</span>
+                <span class="badge bg-dark border border-success">✓ FINRA Compliant</span>
+                <span class="badge bg-dark border border-success">✓ ISO 27001 Certified</span>
+                <span class="badge bg-dark border border-success">✓ SOC 2 Type II</span>
+                <span class="badge bg-dark border border-success">✓ GDPR Compliant</span>
+            </div>
+        </div>
+
+        <!-- NEWSLETTER SIGNUP -->
+        <div class="section" id="contact">
+            <h2><i class="fas fa-envelope"></i> Stay Updated</h2>
+            
+            <div class="row">
+                <div class="col-lg-8">
+                    <p class="text-muted mb-4">Subscribe to our weekly market analysis, trading signals, and quantitative finance insights.</p>
+                    <form class="d-flex gap-2">
+                        <input type="email" class="form-control bg-dark border-info text-light" placeholder="Enter your email" required>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> Subscribe
+                        </button>
+                    </form>
+                </div>
+                <div class="col-lg-4">
+                    <div class="bg-dark p-3 rounded border border-info">
+                        <p class="mb-2"><strong>Newsletter Benefits:</strong></p>
+                        <ul class="small mb-0">
+                            <li><i class="fas fa-check text-success"></i> Weekly Market Reports</li>
+                            <li><i class="fas fa-check text-success"></i> Trading Signals</li>
+                            <li><i class="fas fa-check text-success"></i> Strategy Updates</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- FOOTER -->
+        <footer class="bg-dark text-center py-4 mt-5 border-top border-info">
+            <div class="row mb-4">
+                <div class="col-md-4">
+                    <h5 class="text-info">QuantEdge</h5>
+                    <p class="small text-muted">Advanced Quantitative Finance Platform</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-info">Quick Links</h5>
+                    <ul class="list-unstyled small">
+                        <li><a href="#" class="text-decoration-none text-info">Documentation</a></li>
+                        <li><a href="#" class="text-decoration-none text-info">API Reference</a></li>
+                        <li><a href="#" class="text-decoration-none text-info">Community</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 class="text-info">Follow Us</h5>
+                    <p class="small">
+                        <a href="#" class="text-info text-decoration-none me-2"><i class="fab fa-twitter"></i></a>
+                        <a href="#" class="text-info text-decoration-none me-2"><i class="fab fa-linkedin"></i></a>
+                        <a href="#" class="text-info text-decoration-none"><i class="fab fa-github"></i></a>
+                    </p>
+                </div>
+            </div>
+            <hr class="border-info">
+            <p class="mb-0 text-muted small">&copy; 2026 QuantEdge Finance. All Rights Reserved. | <a href="#" class="text-info text-decoration-none">Privacy Policy</a> | <a href="#" class="text-info text-decoration-none">Terms of Service</a></p>
+        </footer>
+    </div>
+    <!-- Modal for Info Display -->
+    <div class="modal fade" id="infoModal" tabindex="-1" aria-labelledby="infoModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content bg-dark border-info">
+                <div class="modal-header border-info">
+                    <h5 class="modal-title text-info" id="infoModalLabel">Information</h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-light" id="infoModalBody">
+                    <!-- Content will be dynamically inserted here -->
+                </div>
+                <div class="modal-footer border-info">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary" id="executeActionBtn">Execute Action</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <script>
+        // Modal handler
+        const infoModal = new bootstrap.Modal(document.getElementById('infoModal'));
+        const infoModalBody = document.getElementById('infoModalBody');
+        const infoModalLabel = document.getElementById('infoModalLabel');
+        const executeActionBtn = document.getElementById('executeActionBtn');
+        let currentAction = null;
+
+        // Show modal with information
+        function showInfo(title, content, action = null) {
+            infoModalLabel.textContent = title;
+            infoModalBody.innerHTML = content;
+            currentAction = action;
+            if (action) {
+                executeActionBtn.style.display = 'block';
+            } else {
+                executeActionBtn.style.display = 'none';
+            }
+            infoModal.show();
+        }
+
+        // Market Cards Click Handler
+        document.querySelectorAll('.market-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (e.target.tagName === 'BUTTON') {
+                    const market = this.querySelector('h5').textContent;
+                    const price = this.querySelector('h3').textContent;
+                    const change = this.querySelector('p').textContent;
+                    
+                    const content = `
+                        <h6>${market}</h6>
+                        <p><strong>Current Price:</strong> ${price}</p>
+                        <p><strong>Change:</strong> ${change}</p>
+                        <hr>
+                        <h6>Technical Analysis</h6>
+                        <ul>
+                            <li>RSI: 65.2 (Overbought)</li>
+                            <li>MACD: Bullish Signal</li>
+                            <li>Support Level: ${market.includes('EUR') ? '1.0750' : (market.includes('Bitcoin') ? '$43,500' : '$4,750')}</li>
+                            <li>Resistance Level: ${market.includes('EUR') ? '1.0950' : (market.includes('Bitcoin') ? '$47,000' : '$4,950')}</li>
+                        </ul>
+                        <h6>Trading Volume</h6>
+                        <p>${market.includes('Bitcoin') ? '$28.5B' : '$156.8B'}</p>
+                    `;
+                    showInfo(`${market} - Detailed Analysis`, content);
+                }
+            });
+        });
+
+        // Strategy Cards Click Handler
+        document.querySelectorAll('.strategy-card').forEach(card => {
+            card.addEventListener('click', function(e) {
+                if (e.target.classList.contains('btn')) {
+                    const strategy = this.querySelector('h5').textContent;
+                    const description = this.querySelector('p').textContent;
+                    const winRate = this.querySelector('.badge').textContent;
+                    
+                    const content = `
+                        <h6>${strategy}</h6>
+                        <p><strong>Description:</strong> ${description}</p>
+                        <p><strong>${winRate}</strong></p>
+                        <hr>
+                        <h6>Strategy Parameters</h6>
+                        <ul>
+                            <li>Risk/Reward Ratio: 1:2</li>
+                            <li>Max Position Size: 5%</li>
+                            <li>Stop Loss: -2%</li>
+                            <li>Take Profit: +4%</li>
+                            <li>Time Frame: Daily/Weekly</li>
+                        </ul>
+                        <h6>Performance Metrics</h6>
+                        <ul>
+                            <li>Sharpe Ratio: ${(Math.random() * 2 + 1).toFixed(2)}</li>
+                            <li>Max Drawdown: -${(Math.random() * 30 + 10).toFixed(1)}%</li>
+                            <li>Profit Factor: ${(Math.random() * 2 + 1.5).toFixed(2)}</li>
+                        </ul>
+                    `;
+                    showInfo(`${strategy} - Deployment Details`, content, 'deploy');
+                }
+            });
+        });
+
+        // Trading Actions Buttons
+        document.querySelectorAll('.section button').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (this.textContent.includes('Buy Signal')) {
+                    showInfo('Buy Signal', `
+                        <p><strong>Signal Type:</strong> STRONG BUY</p>
+                        <p><strong>Confidence:</strong> 87.5%</p>
+                        <hr>
+                        <h6>Technical Indicators:</h6>
+                        <ul>
+                            <li>❤️ 12 Bullish Signals</li>
+                            <li>❌ 2 Bearish Signals</li>
+                        </ul>
+                        <h6>Recommended Action:</h6>
+                        <p>Enter long position with limit order at current support level or better.</p>
+                        <h6>Risk Management:</h6>
+                        <p>Stop Loss: 2% below entry | Take Profit: 5% above entry</p>
+                    `, 'buy');
+                } else if (this.textContent.includes('Sell Signal')) {
+                    showInfo('Sell Signal', `
+                        <p><strong>Signal Type:</strong> STRONG SELL</p>
+                        <p><strong>Confidence:</strong> 81.2%</p>
+                        <hr>
+                        <h6>Technical Indicators:</h6>
+                        <ul>
+                            <li>❌ 10 Bearish Signals</li>
+                            <li>❤️ 3 Bullish Signals</li>
+                        </ul>
+                        <h6>Recommended Action:</h6>
+                        <p>Exit long positions or enter short position at resistance level.</p>
+                        <h6>Risk Management:</h6>
+                        <p>Stop Loss: 2% above entry | Take Profit: 5% below entry</p>
+                    `, 'sell');
+                } else if (this.textContent.includes('Hold Position')) {
+                    showInfo('Hold Position', `
+                        <p><strong>Signal:</strong> NEUTRAL</p>
+                        <p><strong>Confidence:</strong> 65.0%</p>
+                        <hr>
+                        <h6>Market Analysis:</h6>
+                        <p>Market is in consolidation phase. Waiting for breakout signals.</p>
+                        <h6>Monitoring Points:</h6>
+                        <ul>
+                            <li>Watch for volume spike</li>
+                            <li>Monitor key support/resistance levels</li>
+                            <li>Track economic news calendar</li>
+                            <li>Observe price action patterns</li>
+                        </ul>
+                        <h6>Next Action Expected:</h6>
+                        <p>Within 24-48 hours as per technical analysis</p>
+                    `, 'hold');
+                } else if (this.textContent.includes('Rebalance')) {
+                    showInfo('Portfolio Rebalancing', `
+                        <h6>Current Allocation vs Target:</h6>
+                        <ul>
+                            <li>Stocks: 58% (Target: 60%) - BUY</li>
+                            <li>Bonds: 22% (Target: 25%) - BUY</li>
+                            <li>Commodities: 12% (Target: 10%) - SELL</li>
+                            <li>Cash: 8% (Target: 5%) - REALLOCATE</li>
+                        </ul>
+                        <h6>Rebalancing Actions:</h6>
+                        <ul>
+                            <li>Sell: $25,000 Commodities</li>
+                            <li>Sell: $15,000 Cash allocation</li>
+                            <li>Buy: $35,000 Stocks</li>
+                            <li>Buy: $5,000 Bonds</li>
+                        </ul>
+                        <h6>Expected Impact:</h6>
+                        <p>Reduced portfolio risk by 3.2% | Improved diversification</p>
+                    `, 'rebalance');
+                } else if (this.textContent.includes('Stop Loss')) {
+                    showInfo('Set Stop Loss', `
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Current Position:</label>
+                                <input type="text" class="form-control bg-dark border-info text-light" value="$120,500" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Stop Loss Level (%):</label>
+                                <input type="number" class="form-control bg-dark border-info text-light" value="2" placeholder="2%">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Calculated Stop Level:</label>
+                                <input type="text" class="form-control bg-dark border-info text-light" value="$118,090" readonly>
+                            </div>
+                            <p class="small">⚠️ Your position will be automatically closed if price falls to this level.</p>
+                        </form>
+                    `, 'stoploss');
+                } else if (this.textContent.includes('Take Profit')) {
+                    showInfo('Set Take Profit', `
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Current Position:</label>
+                                <input type="text" class="form-control bg-dark border-info text-light" value="$120,500" readonly>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Take Profit Level (%):</label>
+                                <input type="number" class="form-control bg-dark border-info text-light" value="5" placeholder="5%">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Calculated Target Level:</label>
+                                <input type="text" class="form-control bg-dark border-info text-light" value="$126,525" readonly>
+                            </div>
+                            <p class="small">✅ Your position will be automatically closed at this profit level.</p>
+                        </form>
+                    `, 'takeprofit');
+                } else if (this.textContent.includes('Adjust Allocation')) {
+                    showInfo('Adjust Portfolio Allocation', `
+                        <h6>Current Allocation Pie Chart:</h6>
+                        <ul>
+                            <li>🔵 Stocks: 60%</li>
+                            <li>🟢 Bonds: 25%</li>
+                            <li>🟡 Commodities: 10%</li>
+                            <li>⚪ Cash: 5%</li>
+                        </ul>
+                        <hr>
+                        <h6>Adjust Allocations:</h6>
+                        <div class="mb-2">
+                            <label>Stocks: 60% <input type="range" min="0" max="100" value="60" class="form-range"></label>
+                        </div>
+                        <div class="mb-2">
+                            <label>Bonds: 25% <input type="range" min="0" max="100" value="25" class="form-range"></label>
+                        </div>
+                        <div class="mb-2">
+                            <label>Commodities: 10% <input type="range" min="0" max="100" value="10" class="form-range"></label>
+                        </div>
+                    `, 'allocation');
+                } else if (this.textContent.includes('Generate Alert')) {
+                    showInfo('Alert Configuration', `
+                        <form>
+                            <div class="mb-3">
+                                <label class="form-label">Alert Type:</label>
+                                <select class="form-select bg-dark border-info text-light">
+                                    <option>Price Threshold</option>
+                                    <option>Volume Spike</option>
+                                    <option>News Event</option>
+                                    <option>Technical Level</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Asset:</label>
+                                <input type="text" class="form-control bg-dark border-info text-light" placeholder="S&P 500">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Threshold Values:</label>
+                                <input type="text" class="form-control bg-dark border-info text-light" placeholder="Above: 4900, Below: 4800">
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="emailAlert" checked>
+                                <label class="form-check-label" for="emailAlert">Email Notification</label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="smsAlert" checked>
+                                <label class="form-check-label" for="smsAlert">SMS Notification</label>
+                            </div>
+                        </form>
+                    `, 'alert');
+                } else if (this.textContent.includes('Technical')) {
+                    showInfo('Technical Analysis Tools', `
+                        <h6>Available Indicators:</h6>
+                        <ul>
+                            <li>📊 Moving Averages (SMA, EMA, WMA)</li>
+                            <li>📈 Momentum Indicators (RSI, MACD, Stochastic)</li>
+                            <li>📉 Volatility Tools (Bollinger Bands, ATR)</li>
+                            <li>🔄 Trend Analysis (Ichimoku, ADX)</li>
+                            <li>💹 Volume Tools (OBV, CMF, VWAP)</li>
+                        </ul>
+                        <hr>
+                        <h6>Chart Timeframes Available:</h6>
+                        <p>1m | 5m | 15m | 1h | 4h | Daily | Weekly | Monthly</p>
+                        <h6>Drawing Tools:</h6>
+                        <p>Trendlines | Channels | Support/Resistance | Fibonacci | Elliott Waves</p>
+                    `);
+                } else if (this.textContent.includes('Fundamental')) {
+                    showInfo('Fundamental Analysis', `
+                        <h6>Company Metrics:</h6>
+                        <ul>
+                            <li>P/E Ratio: 18.5 (Fair Value)</li>
+                            <li>P/B Ratio: 3.2 (Above Average)</li>
+                            <li>Dividend Yield: 2.1%</li>
+                            <li>ROE: 15.8%</li>
+                            <li>Debt-to-Equity: 0.45</li>
+                        </ul>
+                        <hr>
+                        <h6>Financial Health:</h6>
+                        <ul>
+                            <li>Revenue Growth: +12.5% YoY</li>
+                            <li>Earnings Growth: +18.3% YoY</li>
+                            <li>Free Cash Flow: Strong ✓</li>
+                            <li>Credit Rating: AA</li>
+                        </ul>
+                    `);
+                } else if (this.textContent.includes('Sentiment')) {
+                    showInfo('Market Sentiment Analysis', `
+                        <h6>Sentiment Breakdown:</h6>
+                        <ul>
+                            <li>Bullish: 72% (16,245 mentions)</li>
+                            <li>Neutral: 18% (4,065 mentions)</li>
+                            <li>Bearish: 10% (2,250 mentions)</li>
+                        </ul>
+                        <hr>
+                        <h6>Social Media Trends:</h6>
+                        <ul>
+                            <li>Twitter: 🟢 Bullish Sentiment</li>
+                            <li>Reddit: 🟢 Very Bullish</li>
+                            <li>StockTwits: 🟢 Bullish</li>
+                            <li>News Headlines: 🟡 Mixed</li>
+                        </ul>
+                        <p><strong>Overall: BULLISH BIAS</strong></p>
+                    `);
+                }
+            });
+        });
+
+        // Risk Calculator
+        document.querySelector('#calculators form') && document.querySelector('#calculators form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const portfolioValue = parseFloat(document.getElementById('portfolioValue').value);
+            const returnRate = parseFloat(document.getElementById('returnRate').value);
+            const volatility = parseFloat(document.getElementById('volatility').value);
+            const riskLevel = document.getElementById('riskLevel').value;
+            const timeHorizon = parseFloat(document.getElementById('timeHorizon').value);
+            
+            if (!portfolioValue || !returnRate || !volatility || !riskLevel || !timeHorizon) {
+                alert('Please fill all fields');
+                return;
+            }
+
+            // Calculate VaR (95% confidence interval, 1-day)
+            const var95 = portfolioValue * (returnRate / 100) * Math.sqrt(1/252) * 1.645;
+            const expectedReturn = portfolioValue * (returnRate / 100);
+            const sharpeRatio = (returnRate - 2) / volatility; // Assuming 2% risk-free rate
+            const maxDrawdown = (volatility * Math.sqrt(timeHorizon) * 2.5);
+            const sortinoRatio = shareRatio * 1.5;
+            const beta = riskLevel === 'conservative' ? 0.6 : (riskLevel === 'moderate' ? 0.95 : 1.3);
+
+            // Update results
+            document.querySelectorAll('.risk-metric')[0].innerHTML = 
+                `<span><strong>Value at Risk (VaR 95%):</strong></span><span class="price-down">-$${var95.toFixed(2)}</span>`;
+            document.querySelectorAll('.risk-metric')[1].innerHTML = 
+                `<span><strong>Expected Return:</strong></span><span class="price-up">+$${expectedReturn.toFixed(2)}</span>`;
+            document.querySelectorAll('.risk-metric')[2].innerHTML = 
+                `<span><strong>Sharpe Ratio:</strong></span><span class="text-info">${sharpeRatio.toFixed(2)}</span>`;
+            document.querySelectorAll('.risk-metric')[3].innerHTML = 
+                `<span><strong>Maximum Drawdown:</strong></span><span class="price-down">-${maxDrawdown.toFixed(1)}%</span>`;
+            document.querySelectorAll('.risk-metric')[4].innerHTML = 
+                `<span><strong>Sortino Ratio:</strong></span><span class="text-info">${sortinoRatio.toFixed(2)}</span>`;
+            document.querySelectorAll('.risk-metric')[5].innerHTML = 
+                `<span><strong>Beta:</strong></span><span class="text-info">${beta.toFixed(2)}</span>`;
+
+            showInfo('Portfolio Calculation Complete', `
+                <h6>Summary Results:</h6>
+                <ul>
+                    <li><strong>Portfolio Value:</strong> $${portfolioValue.toLocaleString()}</li>
+                    <li><strong>Calculated VaR (95%):</strong> -$${var95.toFixed(2)}</li>
+                    <li><strong>Expected Annual Return:</strong> +$${expectedReturn.toFixed(2)}</li>
+                    <li><strong>Sharpe Ratio:</strong> ${sharpeRatio.toFixed(2)}</li>
+                    <li><strong>Sortino Ratio:</strong> ${sortinoRatio.toFixed(2)}</li>
+                    <li><strong>Beta:</strong> ${beta.toFixed(2)}</li>
+                </ul>
+                <hr>
+                <h6>Risk Assessment:</h6>
+                ${sharpeRatio > 1 ? '<p class="text-success">✅ Risk-adjusted returns are favorable</p>' : '<p class="text-danger">⚠️ Risk-adjusted returns need improvement</p>'}
+                ${var95 < portfolioValue * 0.1 ? '<p class="text-success">✅ Maximum daily loss is within acceptable limits</p>' : '<p class="text-warning">⚠️ Consider reducing risk exposure</p>'}
+            `);
+        });
+
+        // Account Form Submission
+        const accountForm = document.querySelector('.section:has(form:last-of-type)') ? 
+            document.querySelector('.section:has(form:last-of-type)').querySelector('form') : null;
+        
+        if (accountForm) {
+            accountForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const firstName = document.getElementById('firstName').value;
+                const lastName = document.getElementById('lastName').value;
+                const email = document.getElementById('email').value;
+                const investment = document.getElementById('investment').value;
+                const experience = document.getElementById('experience').value;
+                const objective = document.getElementById('objective').value;
+                const strategy = document.getElementById('strategy').value;
+                const accountType = document.querySelector('input[name="accountType"]:checked').value;
+                
+                showInfo('Account Created Successfully!', `
+                    <h6>Welcome, ${firstName} ${lastName}!</h6>
+                    <hr>
+                    <h6>Account Details:</h6>
+                    <ul>
+                        <li><strong>Email:</strong> ${email}</li>
+                        <li><strong>Account Type:</strong> ${accountType === 'live' ? '💰 Live Trading' : '🎮 Demo Trading'}</li>
+                        <li><strong>Initial Investment:</strong> $${parseFloat(investment).toLocaleString()}</li>
+                        <li><strong>Experience Level:</strong> ${experience}</li>
+                        <li><strong>Investment Objective:</strong> ${objective}</li>
+                        <li><strong>Selected Strategy:</strong> ${strategy}</li>
+                    </ul>
+                    <hr>
+                    <h6>Next Steps:</h6>
+                    <ol>
+                        <li>Verify your email address</li>
+                        <li>Complete identity verification (KYC)</li>
+                        <li>Fund your trading account</li>
+                        <li>Deploy your first strategy</li>
+                        <li>Monitor your portfolio</li>
+                    </ol>
+                    <p class="text-success mt-3">Your account is ready to use!</p>
+                `);
+            });
+        }
+
+        // Execute Action button
+        executeActionBtn.addEventListener('click', function() {
+            if (currentAction) {
+                showInfo('Action Executed', `
+                    <p class="text-success"><strong>✅ ${currentAction.toUpperCase()} EXECUTED SUCCESSFULLY</strong></p>
+                    <hr>
+                    <h6>Execution Details:</h6>
+                    <ul>
+                        <li>Timestamp: ${new Date().toLocaleString()}</li>
+                        <li>Status: Completed</li>
+                        <li>Confirmation ID: #${Math.random().toString(36).substr(2, 9).toUpperCase()}</li>
+                    </ul>
+                    <h6>Next Steps:</h6>
+                    <p>Your action has been processed. Check your portfolio for updates.</p>
+                `);
+                infoModal.hide();
+            }
+        });
+
+        // Newsletter subscription
+        document.querySelector('#contact form') && document.querySelector('#contact form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input[type="email"]').value;
+            showInfo('Subscription Confirmed', `
+                <p class="text-success"><strong>✅ Successfully subscribed!</strong></p>
+                <h6>Confirmation Email Sent To:</h6>
+                <p>${email}</p>
+                <hr>
+                <h6>You Will Receive:</h6>
+                <ul>
+                    <li>📊 Weekly market analysis & reports</li>
+                    <li>📈 Trading signals & recommendations</li>
+                    <li>🚀 Strategy updates & performance reports</li>
+                    <li>💡 Quantitative insights & analysis</li>
+                    <li>🎓 Educational content & webinars</li>
+                </ul>
+                <p class="small mt-3">Check your inbox and confirm your subscription.</p>
+            `);
+            this.reset();
+        });
+    </script>
+</body>
+</html>
