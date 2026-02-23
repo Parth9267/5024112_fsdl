@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Week 5 Demo</title>
+
+  <!-- Bootstrap CSS -->
+  <link
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+
+  <!-- custom styles -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <a class="navbar-brand" href="#">WebDev Demo</a>
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-toggle="collapse"
+        data-target="#navbarNav"
+        aria-controls="navbarNav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#html-section">HTML</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#css-section">CSS</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#js-section">JavaScript</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div class="hero bg-light text-center py-5">
+      <h1 class="display-4">HTML, CSS &amp; JS Overview</h1>
+      <p class="lead">Explore key topics through examples and interactivity.</p>
+    </div>
+  </header>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-toggle="collapse"
+      data-target="#navbarNav"
+      aria-controls="navbarNav"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="#">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#html-section">HTML</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#css-section">CSS</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#js-section">JavaScript</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+  <div class="container mt-4">
+    <nav aria-label="breadcrumb">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">Home</a></li>
+        <li class="breadcrumb-item active" aria-current="page">Demo</li>
+      </ol>
+    </nav>
+
+    <!-- introductory jumbotron replaced by hero above -->
+
+    <!-- HTML Elements Section -->
+    <section id="html-section" class="mt-5">
+      <div class="row">
+        <div class="col-md-8">
+          <h2>HTML Topics</h2>
+          <p>
+            <strong>Elements:</strong> headings, paragraphs, lists,
+            <em>formatting</em>, links, tables, forms, multimedia, and more.
+          </p>
+        </div>
+        <div class="col-md-4">
+          <img src="https://via.placeholder.com/300x200" class="img-fluid rounded" alt="HTML example" />
+        </div>
+      </div>
+
+      <h3>Formatting</h3>
+      <p>This is <b>bold</b>, <i>italic</i>, <u>underlined</u>, <sup>superscript</sup>, and <sub>subscript</sub>.</p>
+
+      <h3>Hyperlink</h3>
+      <p>
+        <a class="demo-link" href="https://example.com" target="_blank">Visit example.com</a>
+      </p>
+
+      <h3>Images</h3>
+      <img src="https://via.placeholder.com/150" alt="placeholder image" />
+
+      <h3>Tables</h3>
+      <table class="demo">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Name</th>
+            <th>Age</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>1</td>
+            <td>Alice</td>
+            <td>30</td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>Bob</td>
+            <td>25</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <h3>Lists</h3>
+      <ul class="demo-list">
+        <li>Item one</li>
+        <li>Item two</li>
+        <li>Item three</li>
+      </ul>
+      <ol>
+        <li>First</li>
+        <li>Second</li>
+      </ol>
+
+      <h3>Frame (iframe)</h3>
+      <iframe src="https://example.com" width="300" height="200" title="example frame"></iframe>
+
+      <h3>Forms</h3>
+      <form id="sampleForm">
+        <label for="inpEmail">Email:</label><br />
+        <input type="email" id="inpEmail" name="inpEmail" placeholder="you@example.com" /><br />
+        <label for="inpText">Text:</label><br />
+        <input type="text" id="inpText" name="inpText" /><br />
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+      <h3>Multimedia</h3>
+      <video width="320" height="240" controls>
+        <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <audio controls>
+        <source src="https://www.w3schools.com/html/horse.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </section>
+
+    <!-- CSS Section -->
+    <section id="css-section" class="mt-5">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>CSS3 Topics</h2>
+          <p>Color boxes demonstrate colors and backgrounds:</p>
+          <div class="color-box red"></div>
+          <div class="color-box green"></div>
+          <div class="color-box blue"></div>
+        </div>
+        <div class="col-md-6">
+          <h3>Fancy card</h3>
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Styled via CSS</h5>
+              <p class="card-text">This is a simple card demonstrating Bootstrap component together with custom CSS.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="color-box green"></div>
+      <div class="color-box blue"></div>
+
+      <h3>Fonts & Selectors</h3>
+      <p class="text-muted">This paragraph uses a Bootstrap text utility.</p>
+      <p class="font-weight-bold">Bold using Bootstrap utility.</p>
+
+      <h3>Pseudo Classes and Elements</h3>
+      <p>Hover over <a class="demo-link">this link</a> to see a pseudo-class.</p>
+      <h2>Heading with pseudo-element after</h2>
+
+      <h3>Table styled by CSS (above) and list styled with pseudo-elements</h3>
+    </section>
+
+    <!-- JavaScript Section -->
+    <section id="js-section" class="mt-5">
+      <h2>JavaScript Topics</h2>
+      <p>Open the browser console to see variable/operator output.</p>
+
+      <h3>Functions & Events</h3>
+      <input type="text" id="nameInput" placeholder="Your name" />
+      <button id="greetBtn" class="btn btn-success demo-btn">Greet</button>
+      <div id="greetOutput"></div>
+
+      <h3>Loops</h3>
+      <input type="number" id="numberCount" placeholder="Count" />
+      <button id="listBtn" class="btn btn-info demo-btn">List Numbers</button>
+      <div id="numbersOutput"></div>
+
+      <h3>Classes & Objects</h3>
+      <input type="text" id="personName" placeholder="Name" />
+      <input type="number" id="personAge" placeholder="Age" />
+      <button id="personBtn" class="btn btn-warning demo-btn">Create Person</button>
+      <div id="personOutput"></div>
+    </section>
+  </div>
+
+  <footer>
+    <p>&copy; 2026 Demo Page | <a href="#html-section">HTML</a> | <a href="#css-section">CSS</a> | <a href="#js-section">JavaScript</a></p>
+  </footer>
+
+  <!-- Bootstrap JS + dependencies -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- custom script -->
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,126 @@
+/* style.css - CSS3 demonstrations */
+
+/* Syntax & inclusion handled via link in HTML */
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(to right, #f8f9fa, #e9ecef);
+  color: #343a40;
+  margin: 0;
+  padding: 0;
+}
+
+/* hero section */
+.hero {
+  background: url('https://via.placeholder.com/1200x300') center/cover no-repeat;
+  color: #fff;
+}
+
+/* card spacing */
+.card {
+  margin-top: 1rem;
+}
+
+header, footer {
+  background-color: #343a40;
+  color: white;
+  padding: 1rem;
+  text-align: center;
+}
+
+footer a {
+  color: #ffc107;
+  text-decoration: none;
+}
+
+footer a:hover {
+  text-decoration: underline;
+}
+
+h1, h2, h3 {
+  margin-top: 1rem;
+}
+
+nav.breadcrumb {
+  background: transparent;
+}
+
+/* table styling */
+table.demo {
+  width: 100%;
+  border-collapse: collapse;
+}
+table.demo th, table.demo td {
+  border: 1px solid #dee2e6;
+  padding: 0.5rem;
+  text-align: left;
+}
+table.demo tr:nth-child(even) {
+  background-color: #f1f1f1;
+}
+
+/* list styling and pseudo elements */
+ul.demo-list {
+  list-style: none;
+  padding: 0;
+}
+ul.demo-list li::before {
+  content: "• ";
+  color: #007bff;
+}
+ul.demo-list li a:hover {
+  text-decoration: underline;
+}
+
+/* pseudo classes */
+a.demo-link:link {
+  color: #007bff;
+}
+a.demo-link:visited {
+  color: #6f42c1;
+}
+a.demo-link:hover {
+  color: #0056b3;
+}
+a.demo-link:active {
+  color: #004085;
+}
+
+/* form element styling */
+input[type="text"], input[type="email"], textarea {
+  width: 100%;
+  padding: 0.5rem;
+  margin-bottom: 0.5rem;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+}
+
+/* pseudo element examples */
+h2::after {
+  content: " ✨";
+}
+
+/* color and background classes for demonstration */
+.color-box {
+  width: 100px;
+  height: 100px;
+  display: inline-block;
+  margin: 0.5rem;
+}
+
+.red { background-color: red; }
+.green { background-color: green; }
+.blue { background-color: blue; }
+
+/* button demo */
+button.demo-btn {
+  margin: 0.5rem 0;
+}
+
+/* login form card */
+.login-card {
+  padding: 2rem;
+  background: white;
+  border-radius: 0.5rem;
+  box-shadow: 0 0.5rem 1rem rgba(0,0,0,0.1);
+}
