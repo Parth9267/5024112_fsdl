@@ -1,0 +1,22 @@
+.vehicle-card {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1rem;
+  cursor: pointer;
+  width: 240px;
+  text-align: center;
+  transition: box-shadow 0.3s, transform 0.2s;
+  margin: 0.5rem;
+  background: #fff;
+}
+
+.vehicle-card:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.vehicle-card img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 4px;
+}
